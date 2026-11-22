@@ -460,15 +460,16 @@
 }
 .captain-badge i { font-size: 0.8rem; text-shadow: 0 0 10px var(--gold); }
         /* --- NEXUS LEGENDS CUSTOM LOADER --- */
+/* ================= LEVERAGE LIVE LOADER STYLING ================= */
 #nl-loader-wrapper {
     position: fixed;
     inset: 0;
-    background: #020617; /* Ultra Dark Blue */
+    background: #000000 !important;
     z-index: 100000;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nl-loader-content {
@@ -478,82 +479,108 @@
     align-items: center;
 }
 
-.nl-logo-container {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 20px;
+.leverage-logo-container {
+    width: 250px;
+    height: 65px;
+    margin-bottom: 15px;
 }
 
-.nl-svg {
+.leverage-svg {
     width: 100%;
     height: 100%;
+    overflow: visible;
 }
 
-.nl-svg path {
+.leverage-svg path {
     fill: none;
-    stroke-width: 8;
+    stroke-width: 5;
     stroke-linecap: round;
     stroke-linejoin: round;
-    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.5));
 }
 
-.letter-n {
-    stroke: #00e5ff; /* Cyan */
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    animation: drawLetter 2s ease-in-out infinite;
+/* Gold Letters (L, V, R, G) */
+.lev-stroke-gold {
+    stroke: #fbbf24;
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8));
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    animation: drawLeverage 2.4s ease-in-out infinite;
 }
 
-.letter-l {
-    stroke: #10b981; /* Emerald */
-    stroke-dasharray: 150;
-    stroke-dashoffset: 150;
-    animation: drawLetter 2s ease-in-out infinite 0.3s;
+/* Cyber Yellow Letters (E, E, A, E) */
+.lev-stroke-yellow {
+    stroke: #facc15;
+    filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.8));
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    animation: drawLeverage 2.4s ease-in-out infinite 0.2s;
 }
 
-.nexus-point {
-    fill: white;
-    box-shadow: 0 0 15px #fff;
-    animation: pointPulse 1s ease-in-out infinite;
+/* Glowing Pulsing Beacon Point */
+.lev-core {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 12px #facc15);
+    animation: levCorePulse 1.2s ease-in-out infinite alternate;
 }
 
-@keyframes drawLetter {
-    0% { stroke-dashoffset: 200; opacity: 0; }
+@keyframes drawLeverage {
+    0% { stroke-dashoffset: 180; opacity: 0.15; }
     30% { opacity: 1; }
     50% { stroke-dashoffset: 0; }
-    100% { stroke-dashoffset: -200; opacity: 0; }
+    80% { opacity: 1; }
+    100% { stroke-dashoffset: -180; opacity: 0.15; }
 }
 
-@keyframes pointPulse {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.5); opacity: 1; }
+@keyframes levCorePulse {
+    0% { transform: scale(0.85); opacity: 0.4; }
+    100% { transform: scale(1.6); opacity: 1; filter: drop-shadow(0 0 15px #ffd700); }
 }
 
+/* Main Text Branding */
 .nl-text {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 5px;
+    font-size: 1.25rem;
+    letter-spacing: 4px;
     font-weight: 900;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
-.n-text { color: #00e5ff; margin-right: 8px; }
-.l-text { color: #10b981; }
+.lev-text-gold {
+    color: #fbbf24;
+    text-shadow: 0 0 12px rgba(251, 191, 36, 0.7);
+}
 
+.lev-text-yellow {
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.lev-subtext {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #71717a;
+    letter-spacing: 2px;
+    margin-top: 6px;
+    text-transform: uppercase;
+}
+
+/* Mini Progress Bar in Gold to Yellow */
 .nl-progress-mini {
-    width: 100px;
-    height: 2px;
-    background: rgba(255,255,255,0.05);
-    margin-top: 20px;
+    width: 130px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    margin-top: 18px;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .nl-bar {
-    width: 40%;
+    width: 45%;
     height: 100%;
-    background: linear-gradient(90deg, #00e5ff, #10b981);
-    animation: barMove 1.5s infinite linear;
+    background: linear-gradient(90deg, #f59e0b, #facc15, #ffd700);
+    box-shadow: 0 0 10px rgba(250, 204, 21, 0.6);
+    animation: barMove 1.6s infinite linear;
 }
 
 @keyframes barMove {
@@ -561,7 +588,6 @@
     100% { transform: translateX(250%); }
 }
 
-/* Page exit animation */
 .loader-hidden {
     opacity: 0;
     pointer-events: none;
@@ -906,27 +932,47 @@
         <a href="index.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back</a>
     </nav>
 
-    <div id="nl-loader-wrapper">
+    <!-- ================= LEVERAGE LIVE eSPORTS LOADER ================= -->
+<div id="nl-loader-wrapper">
     <div class="nl-loader-content">
-        <div class="nl-logo-container">
-            <svg viewBox="0 0 100 100" class="nl-svg">
-                <!-- The "N" Path -->
-                <path class="letter-n" d="M20,70 L20,30 L50,70 L50,30" />
-                <!-- The "L" Path -->
-                <path class="letter-l" d="M60,30 L60,70 L85,70" />
+        <!-- Self-Drawing Geometric SVG for "LEVERAGE" -->
+        <div class="nl-logo-container leverage-logo-container">
+            <svg viewBox="0 0 236 60" class="leverage-svg">
+                <!-- L -->
+                <path class="lev-stroke-gold" d="M14,14 L14,46 L30,46" />
+                <!-- E -->
+                <path class="lev-stroke-yellow" d="M40,46 L40,14 L56,14 M40,30 L52,30 M40,46 L56,46" />
+                <!-- V -->
+                <path class="lev-stroke-gold" d="M66,14 L75,46 L84,14" />
+                <!-- E -->
+                <path class="lev-stroke-yellow" d="M94,46 L94,14 L110,14 M94,30 L106,30 M94,46 L110,46" />
+                <!-- R -->
+                <path class="lev-stroke-gold" d="M120,46 L120,14 L133,14 L139,20 L139,26 L133,31 L120,31 M130,31 L139,46" />
+                <!-- A -->
+                <path class="lev-stroke-yellow" d="M147,46 L156,14 L165,46 M150,34 L162,34" />
+                <!-- G -->
+                <path class="lev-stroke-gold" d="M190,20 L184,14 L175,14 L169,20 L169,40 L175,46 L184,46 L190,40 L190,30 L180,30" />
+                <!-- E -->
+                <path class="lev-stroke-yellow" d="M200,46 L200,14 L216,14 M200,30 L212,30 M200,46 L216,46" />
                 
-                <!-- Intersecting Glow Point -->
-                <circle class="nexus-point" cx="50" cy="70" r="3" />
+                <!-- Glowing Energy Pulse Node -->
+                <circle class="lev-core" cx="156" cy="14" r="3" />
             </svg>
         </div>
+
+        <!-- Text Title -->
         <div class="nl-text">
-            <span class="n-text">Loading</span><span class="l-text">Profile...</span>
+            <span class="lev-text-gold">LEVE</span><span class="lev-text-yellow">RAGE</span>
         </div>
+
+        <span class="lev-subtext">PLAYER PROFILE • LOADING</span>
+
+        <!-- Gold / Yellow Mini Progress Bar -->
         <div class="nl-progress-mini">
             <div class="nl-bar"></div>
         </div>
     </div>
-    </div>
+</div>
 
     <div id="playerContent" style="display: none;">
         <div id="profileCard" class="glass-card-themed">
