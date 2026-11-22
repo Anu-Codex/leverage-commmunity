@@ -877,6 +877,7 @@
             document.getElementById('trPlayerSelect').innerHTML = '<option value="">Select Player...</option>' + 
     players.map(p => `<option value="${p._id}">${p.name}</option>`).join('');
             document.getElementById('repNewPlayerSelect').innerHTML = '<option value="">Choose Player...</option>' + pOpts;
+            document.getElementById('playerSelector').innerHTML = '<option value="">Choose Player...</option>' + pOpts;
 
             const teamOpts = teams.map(t => `<option value="${t.name}">${t.name}</option>`).join('');
         
