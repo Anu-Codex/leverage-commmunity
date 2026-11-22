@@ -852,8 +852,7 @@
             const players = await pRes.json();
             const tours = await tRes.json();
             const teams = await teamRes.json();
-            const duoRes = await fetch(`${API_V2}/api/duo/tournaments`);
-            const duoTours = await duoRes.json();
+            
 
             // Populate Player Selectors
             const pOpts = players.map(p => `<option value="${p._id}">${p.name}</option>`).join('');
@@ -898,12 +897,7 @@
             document.getElementById('repTourSelect').innerHTML = '<option>Select Tour...</option>' + tourOpts;
             document.getElementById('lockTourSelect').innerHTML = '<option>Select Tour...</option>' + tourOpts;
             
-            const duoOpts = duoTours.map(t => `<option value="${t._id}">${t.name} (DUO)</option>`).join('');
-            document.getElementById('dmTourSelect').innerHTML = '<option value="">Select Duo Tour...</option>' + duoOpts;
-            document.getElementById('mgTourSelect').innerHTML = '<option value="">Select Duo Tour...</option>' + duoOpts;
-            document.getElementById('siTourSelect').innerHTML = '<option value="">Select Duo Tour...</option>' + duoOpts;
-            document.getElementById('ieTourSelect').innerHTML = '<option value="">Select Duo Tour...</option>' + duoOpts;
-            document.getElementById('srTourSelect').innerHTML += duoOpts;
+            
 
             // Inside loadAllDashboardData():
 const uclSoloSel = document.getElementById('uclSoloTourSelect');
@@ -926,7 +920,6 @@ const uclSoloSel = document.getElementById('uclSoloTourSelect');
         
 
     } catch (e) { console.error("Sync Error", e); }
-        syncDuoDropdowns();
         loadFreeAgentsDropdown();
         loadCelebrationPlayers();
         loadGloryAdminList();
