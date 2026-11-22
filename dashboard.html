@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - NEXUS LEGENDS</title>
+    <title>Admin Dashboard - MBC LEVERAGE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script>
   (function () {
@@ -59,10 +59,10 @@
             <button class="nav-tab" onclick="showSection('sec-teams', this)">Teams</button>
             <button class="nav-tab" onclick="showSection('sec-smart', this)">Smart Center</button>
             <button class="nav-tab" onclick="showSection('sec-prestige', this)">HOF</button>
-            <button class="nav-tab" onclick="showSection('sec-requests', this)">NMS Inbox</button>
+            
             <button class="nav-tab" onclick="showSection('sec-trophies', this)">CUSTOM TROPHIES</button>
             <button class="nav-tab" onclick="showSection('sec-calendar', this)">EVENT CALENDARS</button>
-            <button class="nav-tab" onclick="showSection('sec-media', this)">Media Center</button>
+            
             <button class="nav-tab" style="color: var(--danger);" onclick="requestDangerAccess(this)">Danger</button>
         </div>
 
@@ -88,137 +88,14 @@
     <textarea id="annMessage" placeholder="Type community update here..." 
               style="width: 100%; height: 80px; background: #060b13; border: 1px solid var(--border); color: white; border-radius: 10px; padding: 10px; outline: none;"></textarea>
     <button onclick="postAnnouncement()" class="btn-green" style="margin-top:10px;">Send Notification</button>
-</div>
-            
-    <!-- Part 1: Create Tour -->
-    <div class="sub-box" style="border-left: 4px solid #00d1ff;">
-        <h4><i class="fa-solid fa-users-rectangle"></i> Create Duo Tournament</h4>
-        <input type="text" id="dtName" placeholder="Tournament Name (e.g. S1 Duo Masters)">
-        <button onclick="createDuoTour()" class="btn-green" style="background:#00d1ff; color:#000;">Initialize Duo Tour</button>
-    </div>
-
-    <!-- 2. DUO FIXTURE ENTRY -->
-<div class="sub-box" style="border-left: 4px solid #00d1ff;">
-    <h4><i class="fa-solid fa-users-viewfinder"></i> DUO FIXTURE ENTRY</h4>
-    
-    <!-- ADD THIS DROPDOWN HERE -->
-    <select id="dtTourSelect" style="border-color: #00d1ff; color: #00d1ff; margin-bottom: 15px;">
-        <option value="">Select Duo Tournament...</option>
-    </select>
-    
-    <div class="grid-2">
-        <select id="dtGroup">
-            <option value="Group A">Group A</option>
-            <option value="Group B">Group B</option>
-            <option value="Group C">Group C</option>
-            <option value="Group D">Group D</option>
-            <option value="Group E">Group E</option>
-            <option value="Group F">Group F</option>
-        </select>
-        <input type="text" id="dtStage" placeholder="Stage (e.g. Round 1)">
-    </div>
-
-    <div class="grid-2" style="margin-top:10px;">
-        <input type="text" id="dtPlayerA" placeholder="Team 1">
-        <input type="text" id="dtPlayerB" placeholder="Team 2">
-    </div>
-    
-    <button onclick="createDuoFixture()" class="btn-gold" style="background:#00d1ff; color:#000; margin-top: 15px;">
-        ADD DUO MATCH
-    </button>
-</div>
-            <!-- 3. DUO RESULT CENTRE & DELETE -->
-<div class="sub-box" style="border-left: 4px solid #ef4444;">
-    <h4><i class="fa-solid fa-trophy"></i> Duo Result Centre</h4>
-    <select id="dmTourSelect" onchange="loadDuoManagementFixtures()">
-        <option value="">Select Duo Tour to Manage...</option>
-    </select>
-    
-    <div id="duoManagementList" class="list-container" style="margin-top:15px; border-color:#334155;">
-        <p style="text-align:center; color:var(--text-dim); padding:10px;">Select a tour to view/edit matches.</p>
-    </div>
-    <!-- Inside the Duo Result Centre sub-box -->
-<div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
-    <p style="font-size:0.65rem; color:var(--text-dim); margin-bottom:10px;">
-        Use this if you deleted a match or made a scoring mistake to fix the table.
-    </p>
-    <button onclick="recalculateDuoTable()" class="btn-gold" style="background:#f59e0b; color:black;">
-        <i class="fa-solid fa-arrows-rotate"></i> SYNC DUO POINTS TABLE
-    </button>
-</div>
-</div>
-            <!-- 4. MANUAL GROUP OVERRIDE TOOL -->
-<div class="sub-box" style="border-left: 4px solid #a855f7; background: rgba(168, 85, 247, 0.05);">
-    <h4 style="color:#a855f7;"><i class="fa-solid fa-wand-magic-sparkles"></i> Manual Group Fixer</h4>
-    <p style="font-size:0.65rem; color:var(--text-dim); margin-bottom:15px;">
-        Force a team into a specific group. This updates their table position and all their existing fixtures.
-    </p>
-    
-    <select id="mgTourSelect">
-        <option value="">Select Tournament...</option>
-    </select>
-
-    <div class="grid-2">
-        <input type="text" id="mgTeamName" placeholder="Enter Team Name Exactly">
-        <select id="mgGroup">
-            <option value="Group A">Move to Group A</option>
-            <option value="Group B">Move to Group B</option>
-            <option value="Group C">Move to Group C</option>
-            <option value="Group D">Move to Group D</option>
-            <option value="Group E">Move to Group E</option>
-            <option value="Group F">Move to Group F</option>
-        </select>
-    </div>
-    
-    <button onclick="manualGroupFix()" class="btn-gold" style="background:#a855f7; color:white; margin-top:10px;">
-        EXECUTE GROUP MOVE
-    </button>
-</div>
-            <!-- 5. DELETE DUO TOURNAMENT -->
-<div class="sub-box" style="border: 2px solid var(--danger); background: rgba(239, 68, 68, 0.05); margin-top: 30px;">
-    <h4 style="color: var(--danger);"><i class="fa-solid fa-trash-can"></i> Delete Tournament</h4>
-    <p style="font-size: 0.65rem; color: var(--text-dim); margin-bottom: 15px;">
-        Warning: This will permanently delete the tournament, all its fixtures, and the points table. This cannot be undone.
-    </p>
-    
-    <select id="deleteTourSelect" style="border-color: var(--danger); color: white;">
-        <option value="">Select Tour to Delete...</option>
-    </select>
-    
-    <button onclick="deleteFullDuoTour()" class="delete-btn" style="width: 100%; padding: 12px; margin-top: 10px; font-weight: 900;">
-        CONFIRM PERMANENT DELETE
-    </button>
-</div>
-            <!-- 1. NEURAL STAT INJECTOR -->
-<div class="sub-box" style="border-left: 4px solid #10b981;">
-    <h4><i class="fa-solid fa-file-import"></i> 1. Neural Stat Injector</h4>
-    <p style="font-size:0.65rem; color:var(--text-dim); margin-bottom:10px;">
-        Calculates points from fixtures into the table. <b>Groups will not change.</b>
-    </p>
-    <select id="siTourSelect"><option value="">Select Tour...</option></select>
-    <button onclick="injectDuoStats()" class="btn-green">INJECT MATCH DATA</button>
-</div>
-
-<!-- 2. INTERNAL FIXTURE ENGINE (Auto-Group) -->
-<div class="sub-box" style="border-left: 4px solid #00d1ff;">
-    <h4><i class="fa-solid fa-robot"></i> 2. Internal Match Engine</h4>
-    <p style="font-size:0.65rem; color:var(--text-dim); margin-bottom:10px;">
-        Generate matches between teams already assigned to groups.
-    </p>
-    <select id="ieTourSelect" onchange="loadInternalDuoTeams(this.value)">
-        <option value="">Select Tour...</option>
-    </select>
-    <input type="text" id="ieStage" placeholder="Stage (e.g. Round 2)">
-    
-    <div class="grid-2">
-        <select id="ieTeamA"><option>Select Team 1...</option></select>
-        <select id="ieTeamB"><option>Select Team 2...</option></select>
-    </div>
-    <button onclick="createInternalFixture()" class="btn-gold" style="background:#00d1ff; color:black; margin-top:10px;">
-        GENERATE INTERNAL MATCH
-    </button>
-</div>
+            </div>
         </div>
+            
+    
+           
+            
+            
+
 
         <!-- 2. PLAYERS (Add/Edit/Delete) -->
         <div id="sec-players" class="admin-section">
@@ -951,8 +828,8 @@
     </div>
 
     <script>
-    const API = "https://pes-park-backend.onrender.com";
-    const API_V2 = "https://nexus-database-v2.onrender.com";
+    const API = "https://leverage-commmunity-backend.onrender.com";
+    const API_V2 = "https://leverage-commmunity-backend.onrender.com";
 
     // Security Check
     if (localStorage.getItem('isAdmin') !== 'true') { window.location.href = 'login.html'; }
